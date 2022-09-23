@@ -1,0 +1,45 @@
+{
+    "cluster": "test-sc",
+    "desiredCount": 1,
+    "enableECSManagedTags": true,
+    "enableExecuteCommand": true,
+    "launchType": "EC2",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "securityGroups": [
+                "sg-07535db893ff85110"
+            ],
+            "subnets": [
+                "subnet-0035dc97366a22dcb"
+            ]
+        }
+    },
+    "schedulingStrategy": "REPLICA",
+    "serviceName": "go-service-awsvpc-nondefault", 
+    "serviceConnectConfiguration": {
+        "enabled": true,
+        "namespace": "test-sc",
+        "services": [
+            {
+                "portName": "webserver",
+                "discoveryName": "go-awsvpc-nondefault",
+                "ingressPortOverride": 15000, 
+                "clientAliases": [
+                    {
+                        "port": 8080,
+                        "dnsName": "go.awsvpc.nondefault"
+                    }
+                ]
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/ecs-sc-bugbash",
+                "awslogs-region": "us-west-2",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
+    },
+    "taskDefinition": "ecs-sc-td-jinwang"
+}

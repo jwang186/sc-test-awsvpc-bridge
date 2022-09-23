@@ -1,0 +1,6 @@
+{
+    "clusterName": "test-sc",
+    "serviceConnectDefaults": {
+        "namespace": "test-sc"
+    }
+}
